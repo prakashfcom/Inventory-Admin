@@ -1,0 +1,45 @@
+
+lowdefy: 3.23.3
+name: Admin
+licence: MIT
+connections:
+  - id: brands # The connectionId that will be used when defining requests and mutations on our pages.
+    type: MongoDBCollection # The type of connection
+    properties:
+      databaseName: example-crud # The database name.
+      collection: brands # The collection name.
+      databaseUri:
+        _secret: EXAMPLES_MDB # The database connection uri that is stored as a secret and accessed using the _secret operator.
+      write: true # Allows writes to the database. By default reads are allowed but writes are not.
+  - id: products
+    type: MongoDBCollection
+    properties:
+      databaseName: example-crud
+      collection: products
+      databaseUri:
+        _secret: EXAMPLES_MDB
+      write: true
+types:
+  AgGridAlpine:
+    url: https://blocks-cdn.lowdefy.com/v3.11.4/blocks-aggrid/meta/AgGridAlpine.json
+menus:
+  - id: default
+    links:
+      - id: brands # Define the menu link that directs to the brands page.
+        type: MenuLink
+        pageId: brands # Id of the brands page.
+        properties:
+          title: Brands # Title to show on the menu.
+          icon: AiOutlineShop # Give the menu item a icon, see a list of all available icons at https://react-icons.github.io/react-icons/
+      - id: products
+        type: MenuLink
+        pageId: products
+        properties:
+          title: Products
+          icon: AiOutlineRest
+pages:
+  - _ref: pages/brands/brands.yaml
+  - _ref: pages/brands/new_brand.yaml
+  # - _ref: pages/brands/edit_brand.yaml
+  - _ref: pages/products/products.yaml
+
